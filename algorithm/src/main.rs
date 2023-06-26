@@ -1,13 +1,13 @@
 #![allow(dead_code)]
 
-mod one_step_away;
 mod duplicated_character;
-mod permutation_check;
+mod one_step_away;
 mod palindrome_permutation;
+mod permutation_check;
+mod rotate_matrix;
 mod string_compression;
 
-fn main() {
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
@@ -42,5 +42,28 @@ mod tests {
         assert_eq!("aab", string_compression::run("aab"));
         assert_eq!("", string_compression::run(""));
         assert_eq!("a", string_compression::run("a"));
+    }
+
+    #[test]
+    fn test_rotate_matrix() {
+        let mut m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+        rotate_matrix::run(&mut m);
+        assert_eq!([[7, 4, 1], [8, 5, 2], [9, 6, 3]], m);
+        let mut m = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 16],
+        ];
+        rotate_matrix::run(&mut m);
+        assert_eq!(
+            [
+                [13, 9, 5, 1],
+                [14, 10, 6, 2],
+                [15, 11, 7, 3],
+                [16, 12, 8, 4]
+            ],
+            m
+        );
     }
 }
