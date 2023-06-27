@@ -68,12 +68,13 @@ mod tests {
         );
     }
 
+    #[test]
     fn test_zero_matrix() {
         let mut m = [[1, 0, 3], [4, 5, 6], [7, 8, 9]];
-        rotate_matrix::run(&mut m);
+        zero_matrix::run(&mut m);
         assert_eq!([[0, 0, 0], [4, 0, 6], [7, 0, 9]], m);
         let mut m = [[1, 2, 3], [4, 0, 6], [7, 8, 9]];
-        rotate_matrix::run(&mut m);
+        zero_matrix::run(&mut m);
         assert_eq!([[1, 0, 3], [0, 0, 0], [7, 0, 9]], m);
         let mut m = [
             [1, 2, 3, 4],
@@ -81,12 +82,28 @@ mod tests {
             [9, 10, 11, 12],
             [13, 14, 15, 0],
         ];
-        rotate_matrix::run(&mut m);
+        zero_matrix::run(&mut m);
         assert_eq!(
             [
                 [1, 0, 3, 0],
                 [0, 0, 0, 0],
                 [9, 0, 11, 0],
+                [0, 0, 0, 0],
+            ],
+            m
+        );
+        let mut m = [
+            [1, 2, 3, 4],
+            [5, 0, 7, 8],
+            [9, 10, 11, 12],
+            [13, 0, 15, 16],
+        ];
+        zero_matrix::run(&mut m);
+        assert_eq!(
+            [
+                [1, 0, 3, 4],
+                [0, 0, 0, 0],
+                [9, 0, 11, 12],
                 [0, 0, 0, 0],
             ],
             m
