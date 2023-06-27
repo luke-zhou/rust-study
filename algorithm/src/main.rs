@@ -6,6 +6,7 @@ mod palindrome_permutation;
 mod permutation_check;
 mod rotate_matrix;
 mod string_compression;
+mod zero_matrix;
 
 fn main() {}
 
@@ -62,6 +63,31 @@ mod tests {
                 [14, 10, 6, 2],
                 [15, 11, 7, 3],
                 [16, 12, 8, 4]
+            ],
+            m
+        );
+    }
+
+    fn test_zero_matrix() {
+        let mut m = [[1, 0, 3], [4, 5, 6], [7, 8, 9]];
+        rotate_matrix::run(&mut m);
+        assert_eq!([[0, 0, 0], [4, 0, 6], [7, 0, 9]], m);
+        let mut m = [[1, 2, 3], [4, 0, 6], [7, 8, 9]];
+        rotate_matrix::run(&mut m);
+        assert_eq!([[1, 0, 3], [0, 0, 0], [7, 0, 9]], m);
+        let mut m = [
+            [1, 2, 3, 4],
+            [5, 0, 7, 8],
+            [9, 10, 11, 12],
+            [13, 14, 15, 0],
+        ];
+        rotate_matrix::run(&mut m);
+        assert_eq!(
+            [
+                [1, 0, 3, 0],
+                [0, 0, 0, 0],
+                [9, 0, 11, 0],
+                [0, 0, 0, 0],
             ],
             m
         );
