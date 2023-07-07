@@ -2,13 +2,13 @@
 // But I cant work out how to fix this issue.
 use std::fmt::{self, Display, Formatter};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum ListNode {
     Node(Box<LinkedList>),
     Nil,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct LinkedList {
     pub value: i32,
     pub next: ListNode,
@@ -52,6 +52,43 @@ impl LinkedList {
                 let list = Self::new(t);
                 self.next = ListNode::Node(Box::new(list))
             }
+        }
+    }
+
+    pub fn delete(&mut self, t: i32) {
+        match &mut self.next {
+            ListNode::Node(list) => {
+                if list.value == t {
+                    self.next = list.next.clone();
+                }else{
+                    list.delete(t);
+                }
+            },
+            ListNode::Nil => {
+                panic!("un-implemented for empty list");
+            }
+        }
+    }
+
+    pub fn count(&self) -> usize {
+        let mut count =1;
+        if let ListNode::Node(list) = &self.next {
+            count += list.count();
+        }
+        count
+    }
+
+    pub fn update(&mut self, index: usize, t: i32){
+        if index < self.count(){
+            if index == 0 {
+                self.value = t;
+            }else{
+                if let ListNode::Node(list) = &mut self.next {
+                    list.update(index-1, t);
+                }
+            }
+        }else{
+            panic!("out of boundry");
         }
     }
 }

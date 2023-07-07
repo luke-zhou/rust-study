@@ -129,6 +129,19 @@ mod tests {
 
         println!("{l2}");
         println!("{l2}");
+
+        l2.delete(2);
+        println!("{l2}");
+        l2.delete(3);
+        println!("{l2}");
+        l2.delete(7);
+        println!("{l2}");
+        println!("{}", l2.count());
+
+        l2.update(0,10);
+        println!("{l2}");
+        l2.update(4,10);
+        println!("{l2}");
         // remove_dups::run(&mut l2)
     }
 }
