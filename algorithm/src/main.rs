@@ -7,11 +7,15 @@ mod permutation_check;
 mod rotate_matrix;
 mod string_compression;
 mod zero_matrix;
+mod linked_list;
+mod remove_dups;
 
 fn main() {}
 
 #[cfg(test)]
 mod tests {
+    use crate::linked_list::LinkedList;
+
     use super::*;
 
     #[test]
@@ -108,5 +112,23 @@ mod tests {
             ],
             m
         );
+    }
+
+    #[test]
+    fn test_linked_list() {
+        let l: LinkedList = LinkedList::new(1);
+        println!("{l:?}");
+
+        let mut l2 = l.prepend(1).prepend(2).prepend(3).prepend(2);
+        println!("{l2}");
+        println!("{l2}");
+
+        l2.append(5);
+        l2.append(6);
+        l2.append(7);
+
+        println!("{l2}");
+        println!("{l2}");
+        // remove_dups::run(&mut l2)
     }
 }
