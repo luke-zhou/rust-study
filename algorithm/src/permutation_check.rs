@@ -22,3 +22,13 @@ pub fn run(s1: &str, s2: &str) -> bool {
     }
     true
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_permutation_check() {
+        assert!(run("abcd", "dbca"));
+    }
+}

@@ -18,3 +18,13 @@ pub fn run(s: &str) -> bool {
         false
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_duplicated_character() {
+        assert!(run("abaa"));
+    }
+}

@@ -21,3 +21,13 @@ pub fn run(s: &str) -> bool {
 
     odd_count <= 1
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_palindrome_permutation() {
+        assert!(run("abc  ab"));
+    }
+}

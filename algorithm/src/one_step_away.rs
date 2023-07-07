@@ -23,7 +23,7 @@ pub fn run(s1: &str, s2: &str) -> bool {
 }
 
 fn replace_check(s1: &str, s2: &str) -> bool {
-    let diff_chars_count = s1.chars().zip(s2.chars()).filter(|(a,b)| a != b).count();
+    let diff_chars_count = s1.chars().zip(s2.chars()).filter(|(a, b)| a != b).count();
     diff_chars_count == 1
 }
 
@@ -31,10 +31,22 @@ fn insert_check(short: &str, long: &str) -> bool {
     let len = short.len();
     let mut offset = 0;
     for i in 0..len {
-        if short.chars().nth(i) != long.chars().nth(i+offset){
-            offset +=1;
+        if short.chars().nth(i) != long.chars().nth(i + offset) {
+            offset += 1;
         }
-    };
+    }
     // println!("{offset}");
-    offset <=1
+    offset <= 1
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_one_step_away() {
+        assert!(run("adda", "addab"));
+        assert!(run("adda", "abda"));
+        assert!(run("abdda", "adda"));
+    }
 }
